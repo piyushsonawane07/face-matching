@@ -180,7 +180,7 @@ export default function FaceRecognition() {
 )}
 
 
-    {result && (
+    {result && result.matchingConfidence!=-1 && (
       <Card className="mt-4">
         <CardContent className="p-4">
           <h2 className="text-xl font-semibold mb-2">Matching Result</h2>
