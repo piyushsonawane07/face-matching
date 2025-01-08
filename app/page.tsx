@@ -45,8 +45,8 @@ export default function FaceRecognition() {
     setIsLoading(true);
   
     const formData = new FormData();
-    formData.append('files', image1);
-    formData.append('files', image2);
+    formData.append('doc1', image1);
+    formData.append('doc2', image2);
   
     try {
       const response = await axios.post('https://demo1.izdox.com/api/transaction/face_matching', formData, {
