@@ -49,7 +49,7 @@ export default function FaceRecognition() {
     formData.append('files', image2);
   
     try {
-      const response = await axios.post('https://2ab7-202-136-69-35.ngrok-free.app/detect-faces', formData, {
+      const response = await axios.post('https://demo1.izdox.com/api/transaction/face_matching', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
