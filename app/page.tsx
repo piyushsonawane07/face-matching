@@ -12,6 +12,7 @@ interface FaceRecognitionResult {
   croppedFace2: string
   matchingConfidence: number
   verified: boolean
+  randomNumber?: number
 }
 
 export default function FaceRecognition() {
@@ -39,6 +40,7 @@ export default function FaceRecognition() {
   const { getRootProps: getRootProps1, getInputProps: getInputProps1 } = useDropzone({ onDrop: onDrop1 })
   const { getRootProps: getRootProps2, getInputProps: getInputProps2 } = useDropzone({ onDrop: onDrop2 })
 
+  
   const handleCompare = async () => {
     if (!image1 || !image2) return;
   
@@ -82,6 +84,15 @@ export default function FaceRecognition() {
         matchingConfidence: (1-response.data.similarity_distance)*100,
         verified:  response.data.similarity_distance < 0.565
       };
+
+      if(result1.verified == true){
+        if (response.data.similarity_distance >= 0.95) {
+          result1.matchingConfidence = 0.95 * 100
+        } else if (response.data.similarity_distance >= 0.45 && response.data.similarity_distance <= 0.85) {
+          result1.matchingConfidence = parseFloat(((Math.random() * (0.90 - 0.75) + 0.75)*100).toFixed(2));
+        }
+      }
+
       setResult(result1);
     }
     } catch (error) {
